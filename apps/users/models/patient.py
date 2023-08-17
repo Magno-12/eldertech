@@ -6,7 +6,7 @@ from apps.users.models.user import User
 
 class Patient(BaseModel):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    identifier = models.CharField(max_length=200, unique=True)
+    identifier = models.CharField(max_length=200, unique=True, db_index=True)
     active = models.BooleanField(default=True)
     family_name = models.CharField(max_length=200)
     given_name = models.CharField(max_length=200)
@@ -16,6 +16,7 @@ class Patient(BaseModel):
     nickname = models.CharField(max_length=100, blank=True, null=True)
     gender = models.CharField(
         max_length=50,
+        db_index=True,
         choices=[
             ('Male', 'Male'),
             ('Female', 'Female'),
@@ -34,7 +35,8 @@ class Patient(BaseModel):
             ('Widowed', 'Widowed')
         ],
         blank=True, 
-        null=True
+        null=True,
+        db_index=True
     )
     photo = models.URLField(blank=True, null=True)
     phone = models.CharField(max_length=50, blank=True, null=True)
