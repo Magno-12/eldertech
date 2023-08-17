@@ -1,0 +1,1 @@
+from apps.activities.models.interactiveactivity import InteractiveActivity
